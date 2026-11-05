@@ -1,37 +1,44 @@
 # Azure DevOps for Codex
 
-A local Codex plugin for Azure DevOps Services. It bundles the configuration for Microsoft's local MCP server and a workflow for Azure Boards, Repos, and Pipelines. Codex starts the server through npm. Azure DevOps applies the signed-in identity's permissions.
+Use Codex to triage Azure Boards work items, review Azure Repos pull requests, and diagnose Azure Pipelines failures. The installers add the plugin and configure Microsoft's local Azure DevOps MCP server in your user-level Codex settings.
 
 ## Install
 
-```sh
-git clone https://github.com/JeanMarcMbouma/CodexPlugin.git
-cd CodexPlugin
+You'll need the Codex CLI, Git, Node.js 20 or later, and access to an Azure DevOps Services organization. Run the installer on the same machine and under the same user account as Codex.
+
+### Windows PowerShell
+
+On a fresh Windows machine, install the prerequisites with WinGet, then open a new PowerShell window.
+
+```powershell
+winget install --id OpenAI.Codex --exact --source winget
+winget install --id Git.Git --exact --source winget
+winget install --id OpenJS.NodeJS.LTS --exact --source winget
 ```
 
-1. Install Node.js 20 or later and make sure `npx --version` runs on the machine that runs Codex. You also need an account with access to your Azure DevOps Services organization.
-2. Clone the repository to a permanent local folder. Open `plugins/azure-devops/mcp.json` and replace `YOUR_ORGANIZATION` with the name after `dev.azure.com/` in your organization URL. For `https://dev.azure.com/contoso`, enter `contoso`. Leave the value in quotes and keep this edit local.
-3. Run the following from the `CodexPlugin` checkout, then restart the ChatGPT desktop app.
+Install the plugin using [install.ps1](https://raw.githubusercontent.com/JeanMarcMbouma/CodexPlugin/main/scripts/install.ps1).
 
-   ```sh
-   codex plugin marketplace add .
-   ```
-
-4. Open **Plugins** in Codex in the ChatGPT desktop app. Find **Azure DevOps** in **Azure DevOps Local** and install it. Start a fresh Codex conversation and ask **“List the Azure DevOps projects I can access.”** Complete the Microsoft sign-in prompt the first time you use an Azure DevOps tool.
-
-With Codex CLI, you can install directly after adding the marketplace.
-
-```sh
-codex plugin add azure-devops@azure-devops-local
+```powershell
+Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/JeanMarcMbouma/CodexPlugin/main/scripts/install.ps1' -OutFile install.ps1
+Unblock-File .\install.ps1
+powershell.exe -NoProfile -ExecutionPolicy RemoteSigned -File .\install.ps1
 ```
 
-The first launch may need to download `@azure-devops/mcp@2.11.0` from npm. If you already configured Microsoft's local MCP server separately, use a single Azure DevOps connection in the session so Codex targets the intended organization.
+### macOS or Linux
 
-## Use an existing Azure CLI sign-in
+```sh
+curl -fsSLo install.sh https://raw.githubusercontent.com/JeanMarcMbouma/CodexPlugin/main/scripts/install.sh && bash install.sh
+```
 
-Run `az login` with the account that can access your Azure DevOps organization. Before installing, insert `"--authentication", "azcli"` immediately after the organization name and before `"-d"` in `mcp.json`. Make sure Codex can find `az`. Keep tokens outside the package.
+Enter the organization name from your Azure DevOps URL. For `https://dev.azure.com/contoso`, enter `contoso`. Start a new Codex session and ask **“List the Azure DevOps projects I can access.”** Complete the Microsoft sign-in prompt on first use.
 
-If you change the organization or authentication settings after installing, reinstall from the updated local marketplace and start a fresh session.
+### Pass the organization or use Azure CLI sign-in
+
+Use `-Organization contoso` on PowerShell or `--organization contoso` on Bash to skip the prompt. If you already signed in with `az login`, use `-Auth azcli` or `--auth azcli`.
+
+Run the installer again to refresh the plugin. It reuses a matching MCP configuration. To switch organizations or change authentication, rerun with `-Replace` or `--replace`. This replaces the user-level connection named `azure-devops`.
+
+If you installed version 0.1 from a local checkout, remove that marketplace entry with `codex plugin marketplace remove azure-devops-local` before running the installer. Version 0.2 uses the installer-managed connection.
 
 ## Try it
 
@@ -39,6 +46,6 @@ If you change the organization or authentication settings after installing, rein
 - “Review Azure Repos PR 42 in Dispatch/API and keep any comments as drafts.”
 - “Investigate the latest failed Dispatch CI run on main and link me to the failed step.”
 
-The included server domains expose tools that can modify Azure DevOps resources. The workflow reads by default and only writes on explicit request. Azure DevOps permissions control what the signed-in identity can change.
+Azure DevOps applies the signed-in account's permissions. The workflow reads by default and writes on explicit request.
 
-[Codex plugin packaging and local installation](https://developers.openai.com/plugins/build/plugins) · [Microsoft’s local MCP setup for Codex](https://github.com/microsoft/azure-devops-mcp/blob/main/docs/GETTINGSTARTED.md#codex)
+[Codex plugin packaging and installation](https://developers.openai.com/plugins/build/plugins) · [Microsoft’s local MCP setup for Codex](https://github.com/microsoft/azure-devops-mcp/blob/main/docs/GETTINGSTARTED.md#codex)

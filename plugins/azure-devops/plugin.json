@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "azure-devops",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Work with Azure Boards, Repos, and Pipelines using Microsoft's Azure DevOps MCP server.",
   "keywords": ["azure-devops", "boards", "pull-requests", "pipelines"],
   "extensions": {

@@ -5,7 +5,7 @@ description: Use Azure DevOps Services to triage Azure Boards work items or spri
 
 # Azure DevOps workflow
 
-Use the configured Azure DevOps MCP tools. Resolve the organization and project from an Azure DevOps link or the user's instructions. If the project, repository, team, or pipeline is ambiguous after lookup, ask for the missing identifier. A PR number and a pipeline name can be ambiguous without their project and repository context. Use the server's configured organization only. If the link points to a different organization, ask the user to switch the server configuration before accessing it.
+Use the configured Azure DevOps MCP tools. If the tools are unavailable, direct the user to the installer in the [plugin README](https://github.com/JeanMarcMbouma/CodexPlugin#install). Resolve the organization and project from an Azure DevOps link or the user's instructions. If the project, repository, team, or pipeline is ambiguous after lookup, ask for the missing identifier. A PR number and a pipeline name can be ambiguous without their project and repository context. Use the server's configured organization only. If the link points to a different organization, ask the user to switch the server configuration before accessing it.
 
 ## Azure Boards
 
