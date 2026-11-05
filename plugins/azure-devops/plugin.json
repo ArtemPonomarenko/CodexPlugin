@@ -1,0 +1,22 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "azure-devops",
+  "version": "0.1.0",
+  "description": "Work with Azure Boards, Repos, and Pipelines using Microsoft's Azure DevOps MCP server.",
+  "keywords": ["azure-devops", "boards", "pull-requests", "pipelines"],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Azure DevOps",
+        "shortDescription": "Triage work items, review pull requests, and diagnose pipeline failures.",
+        "category": "Developer Tools",
+        "capabilities": ["Read", "Write"],
+        "defaultPrompt": [
+          "List the Azure DevOps projects I can access.",
+          "Review an Azure Repos pull request and report findings.",
+          "Investigate the most recent failed run of an Azure pipeline."
+        ]
+      }
+    }
+  }
+}

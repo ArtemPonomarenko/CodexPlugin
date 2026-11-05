@@ -1,0 +1,20 @@
+{
+  "name": "azure-devops-local",
+  "interface": {
+    "displayName": "Azure DevOps Local"
+  },
+  "plugins": [
+    {
+      "name": "azure-devops",
+      "source": {
+        "source": "local",
+        "path": "./plugins/azure-devops"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Developer Tools"
+    }
+  ]
+}
