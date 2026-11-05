@@ -19,9 +19,7 @@ winget install --id OpenJS.NodeJS.LTS --exact --source winget
 Install the plugin using [install.ps1](https://raw.githubusercontent.com/JeanMarcMbouma/CodexPlugin/main/scripts/install.ps1).
 
 ```powershell
-Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/JeanMarcMbouma/CodexPlugin/main/scripts/install.ps1' -OutFile install.ps1
-Unblock-File .\install.ps1
-powershell.exe -NoProfile -ExecutionPolicy RemoteSigned -File .\install.ps1
+& ([scriptblock]::Create((irm 'https://raw.githubusercontent.com/JeanMarcMbouma/CodexPlugin/main/scripts/install.ps1' -UseBasicParsing)))
 ```
 
 ### macOS or Linux
@@ -34,7 +32,7 @@ Enter the organization name from your Azure DevOps URL. For `https://dev.azure.c
 
 ### Pass the organization or use Azure CLI sign-in
 
-Use `-Organization contoso` on PowerShell or `--organization contoso` on Bash to skip the prompt. If you already signed in with `az login`, use `-Auth azcli` or `--auth azcli`.
+Append `-Organization contoso` to the PowerShell command or `--organization contoso` after `bash install.sh` to skip the prompt. If you already signed in with `az login`, use `-Auth azcli` or `--auth azcli`.
 
 Run the installer again to refresh the plugin. It reuses a matching MCP configuration. To switch organizations or change authentication, rerun with `-Replace` or `--replace`. This replaces the user-level connection named `azure-devops`.
 
