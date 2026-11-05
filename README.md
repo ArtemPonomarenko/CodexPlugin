@@ -38,6 +38,10 @@ Run the installer again to refresh the plugin. It reuses a matching MCP configur
 
 If you installed version 0.1 from a local checkout, remove that marketplace entry with `codex plugin marketplace remove azure-devops-local` before running the installer. Version 0.2 uses the installer-managed connection.
 
+## Private ChatGPT connector
+
+For ChatGPT web, see the [separate read-only connector](chatgpt/README.md). It supports multiple Azure DevOps organizations with a separate server-side PAT for each one.
+
 ## Try it
 
 - “Show me the active bugs assigned to me in project Dispatch.”
