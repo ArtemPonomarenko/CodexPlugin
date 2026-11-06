@@ -19,7 +19,7 @@ winget install --id OpenJS.NodeJS.LTS --exact --source winget
 Install the plugin using [install.ps1](https://raw.githubusercontent.com/JeanMarcMbouma/CodexPlugin/main/scripts/install.ps1).
 
 ```powershell
-& ([scriptblock]::Create((irm 'https://raw.githubusercontent.com/JeanMarcMbouma/CodexPlugin/main/scripts/install.ps1' -UseBasicParsing)))
+irm 'https://raw.githubusercontent.com/JeanMarcMbouma/CodexPlugin/main/scripts/install.ps1' | iex
 ```
 
 ### macOS or Linux
