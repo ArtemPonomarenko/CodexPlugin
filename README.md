@@ -21,6 +21,11 @@ Install the plugin using [install.ps1](https://raw.githubusercontent.com/JeanMar
 ```powershell
 irm 'https://raw.githubusercontent.com/JeanMarcMbouma/CodexPlugin/main/scripts/install.ps1' | iex
 ```
+Or 
+```powershell
+az login
+& ([scriptblock]::Create((irm 'https://raw.githubusercontent.com/JeanMarcMbouma/CodexPlugin/main/scripts/install.ps1'))) -Organization 'MineTechServicesLTD' -Auth azcli -Replace
+```
 
 ### macOS or Linux
 
