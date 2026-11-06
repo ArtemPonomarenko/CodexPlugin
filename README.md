@@ -24,7 +24,7 @@ irm 'https://raw.githubusercontent.com/JeanMarcMbouma/CodexPlugin/main/scripts/i
 Or 
 ```powershell
 az login
-& ([scriptblock]::Create((irm 'https://raw.githubusercontent.com/JeanMarcMbouma/CodexPlugin/main/scripts/install.ps1'))) -Organization 'MineTechServicesLTD' -Auth azcli -Replace
+& ([scriptblock]::Create((irm 'https://raw.githubusercontent.com/JeanMarcMbouma/CodexPlugin/main/scripts/install.ps1'))) -Organization 'YOUR_ORG' -Auth azcli -Replace
 ```
 
 ### macOS or Linux
