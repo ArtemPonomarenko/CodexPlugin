@@ -47,19 +47,32 @@ If you installed version 0.1 from a local checkout, remove that marketplace entr
 
 For ChatGPT web, see the [separate read-only connector](chatgpt/README.md). It supports multiple Azure DevOps organizations with a separate server-side PAT for each one.
 
-## Scrum Master and backlog refinement
+## Workflow skills
 
-The plugin includes two skills that use your Azure Boards team and process.
+The plugin includes Scrum Master support, backlog refinement, and a bridge for Jira records synchronized with Azure DevOps.
 
 | Skill | Example request |
 | --- | --- |
 | [Scrum Master support](plugins/azure-devops/skills/azure-devops-scrum-master/SKILL.md) | “Prepare a sprint briefing for Care Team in Fabrikam.” |
 | [Backlog refinement](plugins/azure-devops/skills/azure-devops-backlog-refinement/SKILL.md) | “Review the next ten backlog items for grooming and draft acceptance criteria.” |
+| [Jira bridge](plugins/azure-devops/skills/azure-devops-jira-bridge/SKILL.md) | “Compare CARE-12 with its linked DevOps work item and draft the change on the owning side.” |
 
-Both discover organization, project, team, backlog level, and process fields before analyzing work. Briefings identify missing evidence. Refinement produces proposed changes and questions for the team. The private ChatGPT connector exposes the same guidance through its `get_workflow_guidance` tool.
+The Scrum and refinement skills discover organization, project, team, backlog level, and process fields before analyzing work. Briefings identify missing evidence. Refinement produces proposed changes and questions for the team. The private ChatGPT connector exposes the same guidance through its `get_workflow_guidance` tool.
+
+## Jira and Azure DevOps bridge
+
+Connect your existing Jira MCP server or the Atlassian plugin alongside the Azure DevOps connection. The Jira bridge skill uses the counterpart references maintained by your sync tool, including custom fields, Azure work item relations, Jira remote links, and description links. If the link field or ownership rule is unclear, it asks for the relevant mapping.
+
+A comparison shows both records, values, and observed differences. A verified mirrored pair counts once in combined reports, with links to both records. Similar titles and generic related links are kept as unverified candidates. For requested edits, the skill resolves the owning system, updates the requested fields there when tools permit, and reports whether propagation is verified, pending, or unavailable.
+
+The private ChatGPT connector supplies Azure DevOps reads and workflow guidance. Jira reads and writes use your separate Jira connection. Its credentials stay with that connection. The skill uses your existing sync tool to propagate mapped edits.
+
+In ChatGPT or Codex, open Plugins or Connectors, find Atlassian, connect the relevant site, and sign in. For other MCP clients, follow the [official Atlassian setup guide](https://developer.atlassian.com/cloud/rovo-mcp/guides/getting-started/). Use your organization's existing Jira connection for a Jira deployment it supports.
 
 ## Try it
 
+- “Open the Jira counterpart linked to DevOps work item 42.”
+- “Refine these synced stories and show one entry per verified pair.”
 - “Show me the active bugs assigned to me in project Dispatch.”
 - “Review Azure Repos PR 42 in Dispatch/API and keep any comments as drafts.”
 - “Investigate the latest failed Dispatch CI run on main and link me to the failed step.”

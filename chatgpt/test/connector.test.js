@@ -108,6 +108,12 @@ test('MCP exposes only read tools and routes each concurrent request to its own 
   assert.match(scrum.body.boardsContext, /organization/);
   const refinement = await call(base, auth, 'get_workflow_guidance', { workflow: 'backlog-refinement' });
   assert.match(refinement.body.instructions, /acceptance criteria/);
+  const bridge = await call(base, auth, 'get_workflow_guidance', { workflow: 'jira-bridge' });
+  assert.equal(bridge.body.workflow, 'jira-bridge');
+  assert.match(bridge.body.instructions, /sync tool/);
+  assert.match(bridge.body.instructions, /field mappings and ownership rules/);
+  assert.match(bridge.body.instructions, /pending/);
+  assert.match(bridge.body.boardsContext, /organization/);
   assert.equal(seen.length, 0);
 
   const [item, projects, pr, run] = await Promise.all([

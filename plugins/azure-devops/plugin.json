@@ -1,21 +1,23 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "azure-devops",
-  "version": "0.3.0",
-  "description": "Work with Azure Boards, Repos, and Pipelines, including Scrum event preparation and backlog refinement.",
+  "version": "0.4.0",
+  "description": "Work with Azure DevOps, prepare Scrum events and backlog refinement, and follow Jira counterparts maintained by an existing sync tool.",
   "keywords": [
     "azure-devops",
     "boards",
     "pull-requests",
     "pipelines",
     "scrum",
-    "backlog-refinement"
+    "backlog-refinement",
+    "jira",
+    "work-item-sync"
   ],
   "extensions": {
     "com.openai": {
       "interface": {
         "displayName": "Azure DevOps",
-        "shortDescription": "Prepare sprint briefings, refine backlogs, review PRs, and diagnose pipelines.",
+        "shortDescription": "Manage DevOps workflows, refine backlogs, and follow synced Jira records.",
         "category": "Developer Tools",
         "capabilities": [
           "Read",
@@ -26,7 +28,8 @@
           "Review an Azure Repos pull request and report findings.",
           "Investigate the most recent failed run of an Azure pipeline.",
           "Prepare a sprint briefing for my Azure Boards team.",
-          "Review the next backlog items for refinement."
+          "Review the next backlog items for refinement.",
+          "Compare a Jira issue with its synchronized Azure DevOps work item."
         ]
       }
     }

@@ -7,6 +7,8 @@ description: Support Scrum events and team improvement using Azure Boards. Use f
 
 Read [Azure Boards context](../azure-devops-workflow/references/boards-context.md) before fetching work. Follow its organization selection, process discovery, evidence, and edit rules.
 
+For synchronized Jira counterparts, use the [Jira bridge](../azure-devops-jira-bridge/SKILL.md) to resolve record identity and field ownership before combining evidence.
+
 Identify the requested event and the team's decision to prepare. Ask for the Sprint Goal and relevant Definition of Done or working agreements if they are unavailable. Label a goal suggested from backlog content as a proposal.
 
 ## Prepare a sprint briefing
