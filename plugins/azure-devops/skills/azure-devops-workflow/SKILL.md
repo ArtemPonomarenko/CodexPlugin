@@ -5,9 +5,11 @@ description: Use Azure DevOps Services to triage Azure Boards work items or spri
 
 # Azure DevOps workflow
 
-Use the configured Azure DevOps MCP tools. If the tools are unavailable, direct the user to the installer in the [plugin README](https://github.com/JeanMarcMbouma/CodexPlugin#install). Resolve the organization and project from an Azure DevOps link or the user's instructions. If the project, repository, team, or pipeline is ambiguous after lookup, ask for the missing identifier. A PR number and a pipeline name can be ambiguous without their project and repository context. Use the server's configured organization only. If the link points to a different organization, ask the user to switch the server configuration before accessing it.
+Use the configured Azure DevOps MCP tools. If the tools are unavailable, direct the user to the installer in the [plugin README](https://github.com/JeanMarcMbouma/CodexPlugin#install). Resolve the organization and project from an Azure DevOps link or the user's instructions. If the project, repository, team, or pipeline is ambiguous after lookup, ask for the missing identifier. A PR number and a pipeline name can be ambiguous without their project and repository context. Use a connected organization and select it per request when supported. If the connection supports one organization, ask the user to switch its configuration before accessing another.
 
 ## Azure Boards
+
+Use [Scrum Master support](../azure-devops-scrum-master/SKILL.md) for Scrum event preparation and [backlog refinement](../azure-devops-backlog-refinement/SKILL.md) for grooming. Read [Azure Boards context](references/boards-context.md) to resolve team and process details.
 
 - Fetch the work item and relevant relations. For sprint requests, identify the team and iteration before querying its backlog. Keep queries bounded and mention any limits that affect the result.
 - Summarize state, assignment, acceptance criteria, and blockers. Keep recorded facts separate from proposed edits. Link to the work item.

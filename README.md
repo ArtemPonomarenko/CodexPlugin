@@ -47,6 +47,17 @@ If you installed version 0.1 from a local checkout, remove that marketplace entr
 
 For ChatGPT web, see the [separate read-only connector](chatgpt/README.md). It supports multiple Azure DevOps organizations with a separate server-side PAT for each one.
 
+## Scrum Master and backlog refinement
+
+The plugin includes two skills that use your Azure Boards team and process.
+
+| Skill | Example request |
+| --- | --- |
+| [Scrum Master support](plugins/azure-devops/skills/azure-devops-scrum-master/SKILL.md) | “Prepare a sprint briefing for Care Team in Fabrikam.” |
+| [Backlog refinement](plugins/azure-devops/skills/azure-devops-backlog-refinement/SKILL.md) | “Review the next ten backlog items for grooming and draft acceptance criteria.” |
+
+Both discover organization, project, team, backlog level, and process fields before analyzing work. Briefings identify missing evidence. Refinement produces proposed changes and questions for the team. The private ChatGPT connector exposes the same guidance through its `get_workflow_guidance` tool.
+
 ## Try it
 
 - “Show me the active bugs assigned to me in project Dispatch.”

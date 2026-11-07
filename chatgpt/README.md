@@ -27,13 +27,19 @@ Set PATs on the host only. Keep the organization secret out of source control, c
 
 ## Run and connect
 
-From this directory, run `npm ci` followed by `npm start` on Node.js 24. For a container deployment, build with `docker build -t azure-devops-chatgpt .` and inject the same environment variables at runtime. Route HTTPS traffic to the app's port. Use `/healthz` for host health checks.
+From this directory, run `npm ci` followed by `npm start` on Node.js 24. For a container deployment, build from the repository root with `docker build -f chatgpt/Dockerfile -t azure-devops-chatgpt .` and inject the same environment variables at runtime. Route HTTPS traffic to the app's port. Use `/healthz` for host health checks.
 
 In a ChatGPT workspace that permits custom MCP connections, add the public URL as a remote MCP server with OAuth and sign in as the pilot user. Start with **“List the connected Azure DevOps organizations.”** Then try **“List projects in Contoso”** or **“Read work item 42 in Fabrikam.”** For a pipeline run, provide its project and build ID or the full Azure DevOps results link.
 
 An organization name or Azure DevOps link can select the connection for an individual request. With multiple configured organizations, a request without an organization gets an error before any Azure DevOps call. An explicit organization outside the configured list also gets an error. Each tool result identifies the organization it used.
 
-The pilot can list organizations and projects and read a work item, PR summary, or pipeline run by ID. It exposes five read tools. The sign-in allowlist is for a single pilot user.
+The pilot exposes thirteen read tools. Alongside organization and project discovery, work item details, PR summaries, and pipeline runs, it includes team discovery, sprint membership, backlog levels and membership, work item type fields and states, and batched work item details with relations. `get_workflow_guidance` returns the same Scrum Master or refinement skill used by the Codex plugin.
+
+For sprint requests, resolve the team and iteration, read `get_iteration_items`, then hydrate IDs with `get_work_items`. For grooming, discover backlog levels with `list_backlogs`, read `get_backlog_items`, and hydrate the IDs. `list_backlogs` includes the team's process field mappings, column fields, and mapped workflow states. `get_work_item_type` discovers custom field names and states.
+
+Membership results are bounded pages of links with `nextOffset` and `totalRelations`. Links can repeat work item IDs and include parents. Deduplicate before reporting counts. Each batched read accepts at most 50 IDs and reports unavailable IDs in `missingIds`. Text fields longer than 8,000 characters are truncated and identified in `truncatedFields`; the legacy description summary remains capped at 4,000 characters. Live membership can change between pages.
+
+A sprint briefing reports evidence, goal risks, and discussion points. A refinement worksheet includes linked items, observed gaps, draft acceptance criteria or splits, and team questions. Historical velocity, carry-over, and cycle-time trends require revision or analytics evidence beyond these current-state tools. The sign-in allowlist is for a single pilot user.
 
 ## Verify locally
 

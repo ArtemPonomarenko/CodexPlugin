@@ -1,20 +1,32 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "azure-devops",
-  "version": "0.2.0",
-  "description": "Work with Azure Boards, Repos, and Pipelines using Microsoft's Azure DevOps MCP server.",
-  "keywords": ["azure-devops", "boards", "pull-requests", "pipelines"],
+  "version": "0.3.0",
+  "description": "Work with Azure Boards, Repos, and Pipelines, including Scrum event preparation and backlog refinement.",
+  "keywords": [
+    "azure-devops",
+    "boards",
+    "pull-requests",
+    "pipelines",
+    "scrum",
+    "backlog-refinement"
+  ],
   "extensions": {
     "com.openai": {
       "interface": {
         "displayName": "Azure DevOps",
-        "shortDescription": "Triage work items, review pull requests, and diagnose pipeline failures.",
+        "shortDescription": "Prepare sprint briefings, refine backlogs, review PRs, and diagnose pipelines.",
         "category": "Developer Tools",
-        "capabilities": ["Read", "Write"],
+        "capabilities": [
+          "Read",
+          "Write"
+        ],
         "defaultPrompt": [
           "List the Azure DevOps projects I can access.",
           "Review an Azure Repos pull request and report findings.",
-          "Investigate the most recent failed run of an Azure pipeline."
+          "Investigate the most recent failed run of an Azure pipeline.",
+          "Prepare a sprint briefing for my Azure Boards team.",
+          "Review the next backlog items for refinement."
         ]
       }
     }
