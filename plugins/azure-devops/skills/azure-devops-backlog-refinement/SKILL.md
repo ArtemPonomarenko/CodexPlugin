@@ -7,6 +7,8 @@ description: Prepare Azure Boards backlog refinement or grooming. Use to review 
 
 Read [Azure Boards context](../azure-devops-workflow/references/boards-context.md) before fetching work. Follow its organization selection, process discovery, evidence, and edit rules.
 
+For synchronized Jira counterparts, use the [Jira bridge](../azure-devops-jira-bridge/SKILL.md) to resolve identity and edit ownership before refining or grouping items.
+
 Resolve the intended backlog level and item selection. For "the next ten items," establish the team's ordering field or use an ordering supplied by the user. Follow parent links when needed to understand the product outcome.
 
 For each selected item:

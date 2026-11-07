@@ -7,6 +7,8 @@ description: Use Azure DevOps Services to triage Azure Boards work items or spri
 
 Use the configured Azure DevOps MCP tools. If the tools are unavailable, direct the user to the installer in the [plugin README](https://github.com/JeanMarcMbouma/CodexPlugin#install). Resolve the organization and project from an Azure DevOps link or the user's instructions. If the project, repository, team, or pipeline is ambiguous after lookup, ask for the missing identifier. A PR number and a pipeline name can be ambiguous without their project and repository context. Use a connected organization and select it per request when supported. If the connection supports one organization, ask the user to switch its configuration before accessing another.
 
+For Jira counterparts maintained by an existing sync tool, use the [Jira bridge](../azure-devops-jira-bridge/SKILL.md).
+
 ## Azure Boards
 
 Use [Scrum Master support](../azure-devops-scrum-master/SKILL.md) for Scrum event preparation and [backlog refinement](../azure-devops-backlog-refinement/SKILL.md) for grooming. Read [Azure Boards context](references/boards-context.md) to resolve team and process details.

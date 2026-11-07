@@ -33,7 +33,7 @@ In a ChatGPT workspace that permits custom MCP connections, add the public URL a
 
 An organization name or Azure DevOps link can select the connection for an individual request. With multiple configured organizations, a request without an organization gets an error before any Azure DevOps call. An explicit organization outside the configured list also gets an error. Each tool result identifies the organization it used.
 
-The pilot exposes thirteen read tools. Alongside organization and project discovery, work item details, PR summaries, and pipeline runs, it includes team discovery, sprint membership, backlog levels and membership, work item type fields and states, and batched work item details with relations. `get_workflow_guidance` returns the same Scrum Master or refinement skill used by the Codex plugin.
+The pilot exposes thirteen read tools. Alongside organization and project discovery, work item details, PR summaries, and pipeline runs, it includes team discovery, sprint membership, backlog levels and membership, work item type fields and states, and batched work item details with relations. `get_workflow_guidance` returns the same Scrum Master, refinement, or Jira bridge skill used by the Codex plugin.
 
 For sprint requests, resolve the team and iteration, read `get_iteration_items`, then hydrate IDs with `get_work_items`. For grooming, discover backlog levels with `list_backlogs`, read `get_backlog_items`, and hydrate the IDs. `list_backlogs` includes the team's process field mappings, column fields, and mapped workflow states. `get_work_item_type` discovers custom field names and states.
 
@@ -46,3 +46,9 @@ A sprint briefing reports evidence, goal risks, and discussion points. A refinem
 Run `npm ci` and `npm test`. Tests exercise the HTTP authorization challenge, signed tokens, MCP tool discovery, and cross-organization routing with mocked Azure DevOps responses. A deployed smoke test requires the configured AuthKit user and live read PATs.
 
 [WorkOS AuthKit MCP setup](https://workos.com/docs/authkit/mcp) · [ChatGPT MCP setup](https://developers.openai.com/plugins/quickstart) · [Azure DevOps PAT setup](https://learn.microsoft.com/en-us/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate?view=azure-devops)
+
+## Follow synchronized Jira records
+
+For a Jira reference or a cross-platform comparison, call `get_workflow_guidance` with `workflow: "jira-bridge"`. The guidance resolves the configured counterpart link and field ownership before comparing or proposing changes. Connect the Atlassian plugin or an existing Jira MCP server in the same client to read the Jira side. This connector supplies Azure DevOps reads and guidance.
+
+Keep the sync mapping and cross-reference fields intact. Confirm the owning system before edits, let the sync tool propagate them, and identify unverified propagation. Treat incomplete references, missing Jira access, conflicting mappings, and differences in sprint or status semantics as unresolved evidence.
