@@ -67,3 +67,11 @@ Both discover organization, project, team, backlog level, and process fields bef
 Azure DevOps applies the signed-in account's permissions. The workflow reads by default and writes on explicit request.
 
 [Codex plugin packaging and installation](https://developers.openai.com/plugins/build/plugins) · [Microsoft’s local MCP setup for Codex](https://github.com/microsoft/azure-devops-mcp/blob/main/docs/GETTINGSTARTED.md#codex)
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for setup, testing, and pull request guidance.
+
+## License
+
+Licensed under the [MIT License](LICENSE).
