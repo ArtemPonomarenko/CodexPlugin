@@ -1,9 +1,11 @@
 {
   "name": "azure-devops-chatgpt",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
-  "engines": { "node": ">=24" },
+  "engines": {
+    "node": ">=24"
+  },
   "scripts": {
     "start": "node src/main.js",
     "test": "node --test"
@@ -12,5 +14,6 @@
     "@modelcontextprotocol/sdk": "1.32.2",
     "jose": "6.2.15",
     "zod": "4.6.7"
-  }
+  },
+  "license": "MIT"
 }
