@@ -1,0 +1,21 @@
+{
+  "name": "azure-devops",
+  "version": "0.4.0",
+  "description": "Work with Azure DevOps, prepare Scrum events and backlog refinement, and follow Jira counterparts maintained by an existing sync tool.",
+  "author": {
+    "name": "Jean Marc Mbouma"
+  },
+  "homepage": "https://github.com/JeanMarcMbouma/CodexPlugin",
+  "repository": "https://github.com/JeanMarcMbouma/CodexPlugin",
+  "license": "MIT",
+  "keywords": [
+    "azure-devops",
+    "boards",
+    "pull-requests",
+    "pipelines",
+    "scrum",
+    "backlog-refinement",
+    "jira",
+    "work-item-sync"
+  ]
+}
