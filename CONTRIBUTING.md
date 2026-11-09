@@ -14,7 +14,11 @@ npm --prefix chatgpt test
 git diff --check
 ```
 
-Installer changes also need testing on the affected operating systems. Check the Bash script with `bash -n scripts/install.sh`. Validate PowerShell changes with PowerShell and describe the version and operating system used. Test installers in an isolated environment, since they modify the current user's Codex configuration.
+Installer changes also need testing on the affected operating systems and clients. Check the Bash script with `bash -n scripts/install.sh`. Validate PowerShell changes with PowerShell and describe the version and operating system used. Test installers in an isolated environment, since they modify the current user's Codex or Claude Code configuration. For Claude Code, set `CLAUDE_CONFIG_DIR` to an empty directory and pass `--source` with your checkout.
+
+## Plugin manifests
+
+The plugin ships one skill set with two manifests: `plugins/azure-devops/plugin.json` for Codex and `plugins/azure-devops/.claude-plugin/plugin.json` for Claude Code. The Codex marketplace is `.agents/plugins/marketplace.json`; the Claude Code marketplace is `.claude-plugin/marketplace.json`. Keep the name, version, description, and keywords identical; `npm --prefix chatgpt test` checks this. Validate Claude Code changes with `claude plugin validate --strict plugins/azure-devops` and `claude plugin validate --strict .`.
 
 ## Skills and workflow guidance
 
