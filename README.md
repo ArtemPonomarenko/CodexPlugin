@@ -1,10 +1,10 @@
-# Azure DevOps for Codex
+# Azure DevOps for Codex and Claude Code
 
-Use Codex to triage Azure Boards work items, review Azure Repos pull requests, and diagnose Azure Pipelines failures. The installers add the plugin and configure Microsoft's local Azure DevOps MCP server in your user-level Codex settings.
+Use Codex or Claude Code to triage Azure Boards work items, review Azure Repos pull requests, and diagnose Azure Pipelines failures. The installers add the plugin and configure Microsoft's local Azure DevOps MCP server in your user-level Codex or Claude Code settings.
 
 ## Install
 
-You'll need the Codex CLI, Git, Node.js 20 or later, and access to an Azure DevOps Services organization. Run the installer on the same machine and under the same user account as Codex.
+You'll need the Codex CLI or Claude Code, Git, Node.js 20 or later, and access to an Azure DevOps Services organization. Run the installer on the same machine and under the same user account as the client. By default it sets up every client it finds on PATH; see [Choose the client](#choose-the-client).
 
 ### Windows PowerShell
 
@@ -42,6 +42,32 @@ Append `-Organization contoso` to the PowerShell command or `--organization cont
 Run the installer again to refresh the plugin. It reuses a matching MCP configuration. To switch organizations or change authentication, rerun with `-Replace` or `--replace`. This replaces the user-level connection named `azure-devops`.
 
 If you installed version 0.1 from a local checkout, remove that marketplace entry with `codex plugin marketplace remove azure-devops-local` before running the installer. Version 0.2 uses the installer-managed connection.
+
+### Choose the client
+
+Use `-Client` (PowerShell) or `--client` (Bash) with `codex`, `claude`, or `all`. The default, `auto`, selects each of `codex` and `claude` found on PATH. Every selected client is checked for a conflicting `azure-devops` connection before any configuration changes.
+
+```powershell
+& ([scriptblock]::Create((irm 'https://raw.githubusercontent.com/JeanMarcMbouma/CodexPlugin/main/scripts/install.ps1'))) -Organization 'YOUR_ORG' -Auth azcli -Client claude
+```
+
+`-Source` or `--source` installs from a fork, a Git URL, or a local checkout instead of `JeanMarcMbouma/CodexPlugin`.
+
+## Claude Code
+
+For Claude Code, the installer adds the `azure-devops-local` marketplace, installs `azure-devops@azure-devops-local` at user scope, and adds the user-scope `azure-devops` MCP connection. On Windows, Claude Code starts the server with `cmd /c npx`. Start a new Claude Code session and ask **“List the Azure DevOps projects I can access.”** The skills load automatically for matching requests; you can also invoke them as `/azure-devops:azure-devops-scrum-master` and similar.
+
+On Windows, the `claude` command must be on PATH. A standalone Claude Code installation adds it. The copy bundled with the Claude desktop app lives in a versioned folder that changes with each app update. Add that folder to your shell's PATH at startup rather than hard-coding a version.
+
+To set up Claude Code manually, run the equivalent commands. On macOS or Linux, replace `cmd /c npx` with `npx`.
+
+```sh
+claude plugin marketplace add JeanMarcMbouma/CodexPlugin
+claude plugin install azure-devops@azure-devops-local
+claude mcp add --scope user azure-devops -- cmd /c npx --yes @azure-devops/mcp@2.11.0 YOUR_ORG --authentication azcli -d core work work-items repositories pipelines search
+```
+
+Claude Code asks for approval before each MCP tool call. To skip prompts for routine reads, allow specific read tools under `permissions.allow` in `~/.claude/settings.json`, for example `mcp__azure-devops__core_list_projects`. Keep write tools behind approval.
 
 ## Private ChatGPT connector
 

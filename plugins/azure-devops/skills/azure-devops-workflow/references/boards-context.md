@@ -11,6 +11,6 @@
 9. Mark truncatedFields, missing IDs, and inaccessible data as limitations. The connector exposes current data. Historical carry-over, scope changes, velocity, and cycle time require dated revisions or analytics evidence. Ask for that evidence when needed.
 10. Prepare recommendations as drafts. Apply edits only when requested and supported by the connection. Before writing, re-read the target and its revision, preserve unrelated fields, and check for concurrent changes. After an unclear write result, inspect the target before retrying. With the private read-only connector, present a proposed change table for the user to apply.
 
-Use available tools by capability. Codex's local MCP and the private ChatGPT connector may expose different tool names. When a capability is missing, request the relevant backlog export or work item content and identify which part of the assessment it can support.
+Use available tools by capability. The local MCP server used by Codex and Claude Code and the private ChatGPT connector may expose different tool names. When a capability is missing, request the relevant backlog export or work item content and identify which part of the assessment it can support.
 
 Use verified work item URLs from the tools. If a URL is unavailable, identify the item by organization and ID and label the link as unavailable.

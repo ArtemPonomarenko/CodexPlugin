@@ -1,0 +1,19 @@
+{
+  "name": "azure-devops-local",
+  "owner": {
+    "name": "Jean Marc Mbouma"
+  },
+  "metadata": {
+    "description": "Azure DevOps plugin for Claude Code."
+  },
+  "plugins": [
+    {
+      "name": "azure-devops",
+      "source": "./plugins/azure-devops",
+      "description": "Work with Azure DevOps, prepare Scrum events and backlog refinement, and follow Jira counterparts maintained by an existing sync tool.",
+      "version": "0.4.0",
+      "category": "development",
+      "license": "MIT"
+    }
+  ]
+}
